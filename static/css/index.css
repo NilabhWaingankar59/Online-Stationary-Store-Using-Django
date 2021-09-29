@@ -1,0 +1,86 @@
+body {
+    margin: 0%;
+}
+/* 
+* {
+    overflow-x: hidden;
+} */
+
+.header-logo {
+    height: 80px;
+    width: 100%;
+    background-color: #0dcaf0;
+}
+
+.header-centre {
+    margin: auto;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    color: white;
+}
+
+.header-slogen .header-main {
+    text-align: center;
+}
+
+.header-slogen {
+    margin: auto;
+    width: 50%;
+}
+
+.navbar-custom {
+    background: rgb(147, 248, 206);
+    color: white;
+}
+
+.filters-div {
+    background-color: rgb(227, 233, 227);
+    margin-bottom: 10px;
+}
+
+.filters {
+    display: block;
+    padding: 0%;
+    margin: 0%;
+}
+
+.filters li {
+    display: inline-block;
+    margin: auto;
+    width: 16%;
+    padding: 0.8% 1% 0% 1%;
+}
+
+.filters li button {
+    border-radius: 10px;
+    width: 100%;
+    background: rgb(147, 248, 206);
+    font-weight: 450;
+}
+
+.carousel-inner img {
+    height: 400px;
+    overflow: hidden;
+}
+
+.title-more {
+    background: rgb(147, 248, 206);
+}
+
+.col-11 {
+    text-align: center;
+}
+
+a:hover {
+    color: blue !important;
+}
+
+div.p-1 {
+    margin: 2px;
+}
+
+.cards {
+    margin-top: 10px !important;
+    margin-bottom: 10px;
+}

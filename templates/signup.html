@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stationary|Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" class="s">
+</head>
+
+<body>
+    <div class="contain-all">
+        <div class="signup-content">
+            <form method="POST" id="signup-form" class="signup-form" action="/customersignup">
+                {% csrf_token %}
+                <h2 class="form-title">Create account</h2>                
+                <div class="form-group">
+                    <label class="p-1" style="font-size: 1.3em;">First Name :</label>
+                    <input type="text" class="form-input" name="fname" id="name" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label class="p-1" style="font-size: 1.3em;"> Last Name :</label>
+                    <input type="text" class="form-input" name="lname" id="name" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label class="p-1" style="font-size: 1.3em;">E-mail :</label>
+                    <input type="email" class="form-input" name="email" id="email" placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label class="p-1" style="font-size: 1.3em;">Mobile Number :</label>
+                    <input type="number" class="form-input" name="contact" id="email" placeholder="Mobile Number">
+                </div>
+                <div class="form-group">
+                    <label class="p-1" style="font-size: 1.3em;">Address</label>
+                    <input type="text" class="form-input" name="address" id="email" placeholder="Address">
+                </div>
+                <div class="form-group">
+                    <label class="p-1" style="font-size: 1.3em;">District :</label>
+                    <input type="text" class="form-input" name="district" id="re_password" placeholder="District">
+                </div>
+                <div class="form-group">
+                    <label class="p-1" style="font-size: 1.3em;">Pin Code :</label>
+                    <input type="text" class="form-input" name="pin" id="email" placeholder="Your Pin Code">
+                </div>
+                <div class="form-group">
+                    <label class="p-1" style="font-size: 1.3em;">Password :</label>
+                    <input type="text" class="form-input" name="password" id="password" placeholder="Password">
+                    <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="p-1" style="font-size: 1.3em;">Re-password :</label>
+                    <input type="password" class="form-input" name="re_password" id="re_password"
+                        placeholder="Repeat your password">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="agree-term" id="agree-term" class="agree-term">
+                    <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in
+                        <a href="#" class="term-service">Terms of service</a></label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up">
+                </div>
+            </form>
+            <p class="loginhere">
+                Have already an account ? <a href="#" class="loginhere-link">Login here</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

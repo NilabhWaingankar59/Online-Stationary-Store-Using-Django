@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stationary|Sign-In</title>
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+</head>
+<body>
+    <div class="contain-all">
+        <div class="wrap-login100 p-t-50 p-b-90" style="width: 50%; margin: auto; margin-top: 5%;">
+            <form method="POST" class="flex-sb flex-w" action="/customersignin" >
+                {% csrf_token %}
+                <span class="login100-form-title p-b-51">
+                    Login
+                </span>
+                <label class="p-1" style="font-size: 1.1em;">E-mail :</label>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                    <input class="input100" type="text" name="email" placeholder="Email">
+                    <span class="focus-input100"></span>
+                </div>
+                <label class="p-1" style="font-size: 1.1em;">Password :</label>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                    <input class="input100" type="password" name="pass" placeholder="Password">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="flex-sb-m w-full p-t-3 p-b-24">
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            Remember me
+                        </label>
+                    </div>
+                    <div>
+                        <a href="#" class="txt1">
+                            Forgot?
+                        </a>
+                    </div>
+                </div>
+                <div class="container-login100-form-btn m-t-17">
+                    <input type="submit" name="submit" id="submit" class="form-submit login100-form-btn" value="Sign up">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
