@@ -1,4 +1,4 @@
-from accounts.models import category, customer, products
+from accounts.models import cartproduct, category, customer, products,cart,order,orderproduct
 from django.shortcuts import render
 from templates import *
 from django.contrib.auth.models import User
@@ -73,7 +73,87 @@ def productsView(request,catid):
     print(product[0].name)
     return render(request,'products.html',{'product': product})
 
+def carts(request):
+    customerid = request.user.id
+    cartid = (cart.objects.all().filter(custid_id=customerid))[0]
+    cp=cartproduct.objects.all().filter(cartid=cartid)
+    product=products.objects.all() 
+    if cart.objects.all().filter(custid_id=request.user.id).exists()==False:
+        c = cart(custid_id=request.user.id)
+        c.save()
+        print("success")
+    return render(request,'cart.html',{'cp':cp,'product':product})
 
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def itemadded(request,pid):
+    customerid=request.user.id
+    p=products.objects.all().filter(id=pid)[0]
+    cartid=(cart.objects.all().filter(custid_id=customerid))[0]
+    if request.method == 'GET' and cartproduct.objects.filter(pid=pid).exists()==False:
+        i=cartproduct(cartid=cartid,pid=p,n=3)
+        i.save()
+        print("success")
+
+    return redirect("/")
+
+def updatecart(request):
+    a = request.POST.getlist("nof")
+    id=request.POST.getlist("productid")
+    print(a)
+    print(id)
+    for idx, i in zip(id,a):
+        t=cartproduct.objects.get(id=int(idx))
+        print(t)
+        t.n=i
+        t.save()
+        print("sucess")
+
+    return redirect('/cart')
+
+def removeitem(request,pid):
+    cartproduct.objects.filter(pid_id=pid).delete()
+    print(pid,"dsss")
+    return redirect("/cart")
+
+def checkout(request):
+    customerid = request.user.id
+    print(customerid)
+    cust = (customer.objects.all().filter(user_id=customerid))[0]
+    cartid = (cart.objects.all().filter(custid_id=customerid))[0]
+    cp = cartproduct.objects.all().filter(cartid=cartid)
+    product = products.objects.all()
+    if request.method == 'POST':
+        return redirect("/")
+    return render(request, 'order.html', {'cp': cp, 'product': product, 'cust':cust})
+
+def yourorder(request,oid=0):
+    print(oid)
+    customerid = request.user.id
+    cust = (customer.objects.all().filter(user_id=customerid))[0]
+    cartid = (cart.objects.all().filter(custid_id=customerid))[0]
+    cp = cartproduct.objects.all().filter(cartid=cartid)
+    product = products.objects.all()
+    if request.method=='POST':
+        paymenttype = request.POST.get('imp')
+        print(paymenttype)
+        i = order(custid=request.user, paymenttype=paymenttype)
+        i.save()
+        print("SUCESSSSSSSSSSSSSSSSSSS")
+        for j in cp:
+            k=orderproduct(orderid=i,pid=j.pid,n=j.n)
+            k.save()
+        cp.delete()
+        print("Sucess")
+        cp = orderproduct.objects.all().filter(orderid=i.id)
+    else:
+        cp = orderproduct.objects.all().filter(orderid=oid)
+    return render(request, 'placedorder.html', {'cp':cp, 'product': product,'cust':cust})
+
+def orderlist(request):
+    customerid = request.user.id
+    order1 = order.objects.all().filter(custid_id=customerid)
+    return render(request, 'orderlist.html', {'order': order1})
+

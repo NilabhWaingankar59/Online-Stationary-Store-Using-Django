@@ -1,4 +1,4 @@
-{% load static %} {% load product %}
+{% extends 'title.html' %}{% load static %} {% load product %}
 <!DOCTYPE html>
 <html>
 
@@ -17,63 +17,7 @@
 </head>
 
 <body style="overflow-x: hidden;">
-    <div class="header-logo">
-        <div class="header-centre">
-            <span class="header-main">
-                <h1 style="text-align: center; margin-bottom: 0%;padding-top: 5px;"> Online Stationary</h1>
-            </span>
-            <div class="header-slogun" style="text-align: center;"> All your kid's need is here..</div>
-        </div>
-    </div>
-    <nav class="navbar navbar-custom navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                </ul>
-                <form class="d-flex" style="margin: auto; width: 50%;">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-row-reverse">
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link sobut" href="/logout" tabindex="-1" aria-disabled="true">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link sobut" href="/signin" tabindex="-1" aria-disabled="true">Hi,
-                            {{user.username}}</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link sobut" href="/signin" tabindex="-1" aria-disabled="true">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link sobut" href="/signup" tabindex="-1" aria-disabled="true">Sign Up</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Category filters -->
-    <div class="filters-div">
-        <ul class="filters">
-            <li><button type="button">All</button></li>
-            <li><button type="button">Books</button></li>
-            <li><button type="button">Pens & writing</button></li>
-            <li><button type="button">Paper</button></li>
-            <li><button type="button">Files & Folders</button></li>
-            <li><button type="button">School Supply</button></li>
-        </ul>
-    </div>
+    {% block content %}
     <!-- Image Slider -->
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -100,6 +44,8 @@
     </div>
 
     {% for c in cat %}
+    {% if c|nilabh:user %}
+    {% endif %}
     <div class="card-holder">
         <div class="title-more">
             <div class="row p-1">
@@ -111,22 +57,26 @@
             <div class="row row-cols-lg-4 cards-row-4" style="overflow: hidden;">
                 {% for p in product %}
                 {% if c|samecat:p %}
+                {% if c|limit:p %}
                 <div class="card col mx-4" style="width: 18rem; ">
                     <img src="{{ p.image.url }}" class="card-img-top" alt="..." style="height: 200px;">
-                    
+
                     <div class="card-body">
-                        <h5 class="card-title">{{ p.name }} </h5>
+                        <h5 class="card-title">{{ p.name }}</h5>
                         <p class="card-text">{{ p.discription }}</p>
                         <a href="#" class="btn btn-primary">Buy</a>
+                        <a href="cart/{{ p.id }}" class="btn btn-primary" style="margin-left: 25%;">Add to cart</a>
                     </div>
                 </div>
                 {% endif %}
+                {% endif %}
                 {% endfor %}
-                
+
             </div>
         </div>
     </div>
     {% endfor %}
+    {% endblock %}
 
 
 </body>

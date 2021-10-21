@@ -1,6 +1,7 @@
 body {
     margin: 0%;
 }
+
 /* 
 * {
     overflow-x: hidden;
@@ -83,4 +84,12 @@ div.p-1 {
 .cards {
     margin-top: 10px !important;
     margin-bottom: 10px;
+}
+
+.cart {
+    float: right !important;
+    z-index: 99;
+    margin-top: 1.5%;
+    margin-right: 1.5%;
+    border: none;
 }

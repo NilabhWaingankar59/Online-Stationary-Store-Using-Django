@@ -26,4 +26,23 @@ class products(models.Model):
         upload_to='Images/', default='user_profile1.png', null=True)
     catid = models.ForeignKey(category, on_delete=models.CASCADE,default=1)
 
+class cart(models.Model):
+    cartid=models.AutoField(primary_key=True)
+    custid = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
+class cartproduct(models.Model):
+    cartid = models.ForeignKey(cart, on_delete=models.CASCADE, default=1)
+    pid = models.ForeignKey(products, on_delete=models.CASCADE, default=1)
+    n=models.IntegerField(default=1)
+
+class order(models.Model):
+    custid = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    paymenttype = models.CharField(max_length=4)
+    deliverystatus = models.BooleanField(default=False,null=True)
+    deliverytime = models.DateTimeField(auto_now_add=False,null=True)
+
+
+class orderproduct(models.Model):
+    orderid = models.ForeignKey(order, on_delete=models.CASCADE, default=1)
+    pid = models.ForeignKey(products, on_delete=models.CASCADE, default=1)
+    n = models.IntegerField(default=1)
