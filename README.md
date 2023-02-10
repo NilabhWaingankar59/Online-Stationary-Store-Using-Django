@@ -2,16 +2,16 @@
 
 Screenshots:
 
-![image](https://user-images.githubusercontent.com/70227385/218162857-222114b7-de68-4f4f-97f8-98d63d247150.png)
-
+![image](https://user-images.githubusercontent.com/70227385/218165895-30557d55-49ca-475b-801f-cce1cb18146f.png)
 
 
 Dashboard 
 
-![image](https://user-images.githubusercontent.com/70227385/218163112-38fb100c-a20f-4bb8-bf26-1179058aeba3.png)
+![image](https://user-images.githubusercontent.com/70227385/218165987-15c7d378-e944-4230-92a8-39d7de9cdb2a.png)
 
 
-Internship Details :
 
+Billing Details:
 
-![image](https://user-images.githubusercontent.com/70227385/218163741-618443d4-147a-4002-8030-6884cea8a4ce.png)
+![image](https://user-images.githubusercontent.com/70227385/218166103-260a069a-ec47-49e4-86a8-fc9ad0f1d925.png)
+
